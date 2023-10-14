@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: pok8s
-  name: pok8s-server
+  namespace: helm
+  name: helm-server
   labels:
-    app: pok8s-server
+    app: helm-server
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: pok8s-server
+      app: helm-server
   template:
     metadata:
-      namespace: pok8s
+      namespace: helm
       labels:
-        app: pok8s-server
+        app: helm-server
     spec:
       containers:
-        - name: pok8s-server
+        - name: helm-server
           image: server:latest
           imagePullPolicy: IfNotPresent
           ports:
@@ -28,10 +28,10 @@ spec:
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: pok8s-configmap
+                  name: configmap
                   key: REDIS_HOST
             - name: REDIS_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: pok8s-configmap
+                  name: configmap
                   key: REDIS_PORT

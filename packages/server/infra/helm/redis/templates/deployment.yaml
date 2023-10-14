@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: helm
+  name: helm-redis
+  labels:
+    app: helm-redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helm-redis
+  template:
+    metadata:
+      namespace: helm
+      labels:
+        app: helm-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:alpine
+          ports:
+            - containerPort: 6379

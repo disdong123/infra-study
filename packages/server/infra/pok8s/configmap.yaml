@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: pok8s
-  name: configmap
+  name: pok8s-configmap
 data:
-  REDIS_HOST: "redis-ip"
+  REDIS_HOST: "pok8s-redis-ip"
   REDIS_PORT: "6379"
