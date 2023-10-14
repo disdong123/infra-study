@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: dev
+  namespace: pok8s
   name: server-nodeport
 spec:
   type: NodePort

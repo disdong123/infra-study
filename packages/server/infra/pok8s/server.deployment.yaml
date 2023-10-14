@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: dev
+  namespace: pok8s
   name: server-deployment
   labels:
     app: server
@@ -12,7 +12,7 @@ spec:
       app: server
   template:
     metadata:
-      namespace: dev
+      namespace: pok8s
       labels:
         app: server
     spec:
@@ -39,7 +39,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: dev
+  namespace: pok8s
   name: server-srv
 spec:
   selector:

@@ -14,3 +14,7 @@ docker-compose -f packages/server/docker-compose.yaml up --build
 ```
 bash ./packages/server/init.sh -b
 ```
+
+```
+helm create ./packages/server/infra/helm
+```

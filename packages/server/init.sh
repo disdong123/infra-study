@@ -19,19 +19,19 @@ fi
 cd packages/server
 
 echo "Try to create namespace"
-kubectl create namespace dev
+kubectl create namespace pok8s
 
 echo "Try to create config map"
-kubectl apply -f ./infra/pok8s/dev/configmap.yaml
+kubectl apply -f ./infra/pok8s/configmap.yaml
 
 echo "Try to create redis"
-kubectl apply -f ./infra/pok8s/dev/redis.deployment.yaml
+kubectl apply -f ./infra/pok8s/redis.deployment.yaml
 
 echo "Try to create server deployment"
-kubectl apply -f ./infra/pok8s/dev/server.deployment.yaml
+kubectl apply -f ./infra/pok8s/server.deployment.yaml
 
 echo "Try to create server nodeport"
-kubectl apply -f ./infra/pok8s/dev/server.nodeport.yaml
+kubectl apply -f ./infra/pok8s/server.nodeport.yaml
 
 sleep 7
 
