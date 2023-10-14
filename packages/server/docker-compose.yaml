@@ -1,0 +1,24 @@
+services:
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - '6380:6379'
+    networks:
+      - server_test
+
+  api:
+    container_name: api
+    build:
+      context: ../../
+      dockerfile: packages/server/dockerfile-local
+    ports:
+      - '3000:3000'
+    env_file:
+      - ./.env.docker
+    networks:
+      - server_test
+
+networks:
+  server_test:
+    driver: bridge

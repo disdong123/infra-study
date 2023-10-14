@@ -1,19 +1,16 @@
 # monorepo-template
 
-### 생성
-```
-npm init -w ./packages/<name> -y
-```
+## Run
+build context 를 확인해야합니다.
 
-또한, tsconfig.json 의 references 에 path 를 명시해줘야 합니다. 
-
-### 실행
+### Examples for running docker compose
 ```
-npm run build
-npm run start:server
+docker build -t test -f packages/server/dockerfile . 
+docker-compose -f packages/server/docker-compose.yaml up --build
 ```
 
+### Examples for running k8s
 
-### 참고
-- https://jeonghwan-kim.github.io/2022/07/31/npm-workspace
-- https://github.com/david-szabo97/example-typescript-npm-workspaces
+```
+bash ./packages/server/init.sh -b
+```

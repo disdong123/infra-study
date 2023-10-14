@@ -1,3 +1,1 @@
-export * from './Good';
-
-console.log('common');
+export * from './redis/member.repository';
