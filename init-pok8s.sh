@@ -16,8 +16,6 @@ if [ "$build_image" = true ]; then
     docker build -t server:latest -f packages/server/dockerfile .
 fi
 
-cd packages/server
-
 echo "Try to create namespace"
 kubectl create namespace pok8s
 

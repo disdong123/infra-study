@@ -2,8 +2,8 @@ import RedisClient from '@redis/client/dist/lib/client';
 import { CustomRedisClient, RedisClientType } from './custom-redis.client';
 
 export class MemberRepository {
-  PREFIX = 'member:';
-  _client;
+  private readonly PREFIX = 'member';
+  private readonly _client;
 
   constructor(client: Promise<RedisClientType>) {
     this._client = client;
@@ -15,10 +15,6 @@ export class MemberRepository {
 
   async setMember(id: string) {
     (await this._client).set(`${this.PREFIX}:${id}`, `Hello, member ${id}`);
-  }
-
-  async getClient() {
-    return await this._client;
   }
 }
 
