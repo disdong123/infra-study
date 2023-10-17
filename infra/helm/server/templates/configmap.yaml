@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  namespace: helm
-  name: helm-configmap
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.namespace }}-configmap
 data:
   REDIS_HOST: "helm-redis-ip"
   REDIS_PORT: "6379"

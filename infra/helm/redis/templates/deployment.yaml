@@ -1,23 +1,23 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  namespace: helm
-  name: helm-redis
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
   labels:
-    app: helm-redis
+    app: {{ .Values.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: helm-redis
+      app: {{ .Values.name }}
   template:
     metadata:
-      namespace: helm
+      namespace: {{ .Values.namespace }}
       labels:
-        app: helm-redis
+        app: {{ .Values.name }}
     spec:
       containers:
-        - name: redis
-          image: redis:alpine
+        - name: {{ .Values.name }}
+          image: "redis:{{ .Values.image.tag }}"
           ports:
             - containerPort: 6379

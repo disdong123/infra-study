@@ -1,0 +1,7 @@
+namespace: helm
+env: dev
+
+name: helm-redis
+
+image:
+  tag: alpine

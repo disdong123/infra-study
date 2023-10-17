@@ -13,7 +13,7 @@ done
 # -b 옵션
 if [ "$build_image" = true ]; then
     echo "Try to build image"
-    docker build -t server:latest -f packages/server/dockerfile .
+    docker build -t pok8s-server:latest -f packages/server/dockerfile .
 fi
 
 echo "Try to create namespace"
@@ -31,6 +31,7 @@ kubectl apply -f ./infra/pok8s/server.deployment.yaml
 echo "Try to create server nodeport"
 kubectl apply -f ./infra/pok8s/server.nodeport.yaml
 
-sleep 7
+echo "Wait for 10 seconds..."
+sleep 10
 
 curl http://localhost:30010/members/1

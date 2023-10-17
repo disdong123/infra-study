@@ -13,21 +13,20 @@ done
 # -b 옵션
 if [ "$build_image" = true ]; then
     echo "Try to build image"
-    docker build -t server:latest -f packages/server/dockerfile .
+    docker build -t helm-server:latest -f packages/server/dockerfile .
 fi
 
 cd infra/helm/redis
-
-helm uninstall redis
-
-helm install redis .
+helm lint -f values-dev.yaml
+helm uninstall redis 2>/dev/null
+helm install redis -f values-dev.yaml .
 
 cd ../server
+helm lint -f values-dev.yaml
+helm uninstall server 2>/dev/null
+helm install server -f values-dev.yaml .
 
-helm uninstall server
-
-helm install server .
-
-sleep 7
+echo "Wait for 10 seconds..."
+sleep 10
 
 curl http://localhost:30020/members/1

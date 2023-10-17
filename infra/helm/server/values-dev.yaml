@@ -1,0 +1,14 @@
+namespace: helm
+env: dev
+
+port: 3000
+nodePort: 30020
+
+name: helm-server
+autoscaling:
+  replicas: 3
+
+image:
+  tag: latest
+  pullPolicy: IfNotPresent
+

@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: helm
-  name: helm-server
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
   labels:
-    app: helm-server
+    app: {{ .Values.name }}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: helm-server
+      app: {{ .Values.name }}
   template:
     metadata:
-      namespace: helm
+      namespace: {{ .Values.namespace }}
       labels:
-        app: helm-server
+        app: {{ .Values.name }}
     spec:
       containers:
-        - name: helm-server
-          image: server:latest
-          imagePullPolicy: IfNotPresent
+        - name: {{ .Values.name }}
+          image: {{ .Values.name }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: 3000
+            - containerPort: {{ .Values.port }}
           env:
             - name: APP_ENV
-              value: "dev"
+              value: {{ .Values.env }}
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: helm-configmap
+                  name: {{ .Values.namespace }}-configmap
                   key: REDIS_HOST
             - name: REDIS_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: helm-configmap
+                  name: {{ .Values.namespace }}-configmap
                   key: REDIS_PORT
