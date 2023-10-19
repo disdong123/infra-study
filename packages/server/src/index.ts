@@ -10,6 +10,7 @@ const app = express();
 const port = 3000;
 
 app.get('/health', (req, res) => {
+  console.log('/health is called');
   res.send('health check!');
 });
 

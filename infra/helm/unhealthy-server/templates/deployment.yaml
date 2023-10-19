@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.name }}
-          image: {{ .Values.name }}:{{ .Values.image.tag }}
+          image: {{ .Values.image.repository }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
@@ -32,16 +32,3 @@ spec:
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             successThreshold: {{ .Values.livenessProbe.successThreshold }}
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-          env:
-            - name: APP_ENV
-              value: {{ .Values.env }}
-            - name: REDIS_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Values.namespace }}-configmap
-                  key: REDIS_HOST
-            - name: REDIS_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Values.namespace }}-configmap
-                  key: REDIS_PORT

@@ -16,11 +16,19 @@ if [ "$build_image" = true ]; then
     docker build -t helm-server:latest -f packages/server/dockerfile .
 fi
 
-cd infra/helm/redis
+# unhealthy-server
+cd infra/helm/unhealthy-server
+helm lint -f values-dev.yaml
+helm uninstall unhealthy-server 2>/dev/null
+helm install unhealthy-server -f values-dev.yaml .
+
+# redis
+cd ../redis
 helm lint -f values-dev.yaml
 helm uninstall redis 2>/dev/null
 helm install redis -f values-dev.yaml .
 
+# server
 cd ../server
 helm lint -f values-dev.yaml
 helm uninstall server 2>/dev/null

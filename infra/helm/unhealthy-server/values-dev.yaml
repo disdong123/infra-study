@@ -1,0 +1,19 @@
+namespace: helm
+
+port: 8080
+
+name: helm-unhealthy-server
+autoscaling:
+  replicas: 3
+
+image:
+  repository: smlinux/unhealthy
+  pullPolicy: IfNotPresent
+
+livenessProbe:
+  path: /
+  initialDelaySeconds: 3
+  periodSeconds: 1
+  timeoutSeconds: 1
+  successThreshold: 1
+  failureThreshold: 2
