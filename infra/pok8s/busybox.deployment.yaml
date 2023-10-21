@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: helm
+  name: helm-busybox
+  labels:
+    app: helm-busybox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helm-busybox
+  template:
+    metadata:
+      namespace: helm
+      labels:
+        app: helm-busybox
+    spec:
+      containers:
+        - name: helm-busybox
+          image: busybox:1.36
+          imagePullPolicy: IfNotPresent
+          # 계속 실행되는 프로세스가 없으면 바로 Completed 상태가 되므로 sleep inf 명령어를 실행시켜서 계속 실행되도록 합니다.
+          command: ["/bin/sh", "-c", "sleep inf"]
