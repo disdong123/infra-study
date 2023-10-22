@@ -12,3 +12,19 @@
 
 ## 인그레스 컨트롤러
 인그레스는 설정에 관련된 부분만 포함하고, 실제 네트워크 트래픽 처리는 인그레스 컨트롤러가 인그레스 리소스를 해석하여 처리합니다.
+
+```
+bash init-helm-traefik.sh
+bash init-helm-cafe-servers.sh
+```
+
+요청이 traefik ingress controller 를 통해 들어오고, 공인 도메인이 아니므로 traefik 의 external-ip 와 가상 호스트 네임을 /etc/hosts 에 등록합니다.
+```
+# /etc/hosts
+<ip>       coffee.myweb.com
+<ip>       tea.myweb.com
+<ip>       www.myweb.com
+```
+
+## 인증서 적용
+기본적으로 ingress controller 는 TLS 인증서 설정을 지원하여 한 곳에서 인증서 관련 설정을 관리하도록 도와줍니다.

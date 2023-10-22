@@ -16,19 +16,15 @@ if [ "$build_image" = true ]; then
     docker build -t helm-server:latest -f packages/server/dockerfile .
 fi
 
-
-
 # redis
 cd infra/helm/redis
 helm lint -f values-dev.yaml
-helm uninstall redis 2>/dev/null
-helm install redis -f values-dev.yaml .
+helm upgrade --install redis -f values-dev.yaml .
 
 # server
 cd ../server
 helm lint -f values-dev.yaml
-helm uninstall server 2>/dev/null
-helm install server -f values-dev.yaml .
+helm upgrade --install server -f values-dev.yaml .
 
 echo "Wait for 10 seconds..."
 sleep 10

@@ -13,5 +13,11 @@ tar xvfz traefik-10.3.0.tgz
 http://localhost:9000/dashboard/#
 ```
 
+### values-dev.yaml
+- namespace: traefik
+- service type: nodeport
+- web nodeport: 30080
+- websecure nodeport: 30443
+
 ## Docs
 https://doc.traefik.io/traefik/getting-started/install-traefik/#use-the-helm-chart
