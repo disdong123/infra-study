@@ -1,0 +1,41 @@
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pok8s-namespace-full-access
+  namespace: pok8s
+rules:
+- apiGroups: ["", "extensions", "apps"] # k api-resources
+  resources: ["*"]
+  verbs: ["*"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: pok8s-namespace-full-access-rb
+  namespace: pok8s
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: pok8s-namespace-full-access
+subjects:
+- kind: ServiceAccount
+  name: pok8s-sa
+  namespace: pok8s
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pok8s-sa
+  namespace: pok8s
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: pok8s-sa-secret
+  namespace: pok8s
+  annotations:
+    kubernetes.io/service-account.name: pok8s-sa
+type: kubernetes.io/service-account-token

@@ -2,3 +2,6 @@ node_modules
 **/dist
 **/tsconfig.tsbuildinfo
 .idea
+
+# k8s ca file
+k8s-ca.cert
