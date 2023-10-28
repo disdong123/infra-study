@@ -5,3 +5,9 @@ node_modules
 
 # k8s ca file
 k8s-ca.cert
+
+# terraform
+**/*/.terraform.lock.hcl
+**/*/terraform.tfstate
+**/*/terraform.tfstate.backup
+**/*/.terraform
