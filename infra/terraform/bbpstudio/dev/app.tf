@@ -6,7 +6,6 @@ module "app" {
 
   route53_domain = var.domain
   region = var.region
-  name = var.name
+  creator = var.creator
   env = var.env
-  cidr_block = var.cidr_block
 }
