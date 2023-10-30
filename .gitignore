@@ -10,4 +10,5 @@ k8s-ca.cert
 **/*/.terraform.lock.hcl
 **/*/terraform.tfstate
 **/*/terraform.tfstate.backup
+**/*/.terraform.tfstate.lock.info
 **/*/.terraform
